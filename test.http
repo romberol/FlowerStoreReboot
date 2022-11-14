@@ -10,3 +10,16 @@ Content-Type: application/json
   "color": "BLUE",
   "flType": "ROSE"
 }
+
+###
+GET http://localhost:8080/user
+
+###
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+  "name":"Roma",
+  "email": "opa.gmail",
+  "dob": "2003-09-05"
+}
