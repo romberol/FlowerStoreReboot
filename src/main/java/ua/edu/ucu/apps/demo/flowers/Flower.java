@@ -6,7 +6,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import ua.edu.ucu.apps.demo.Item;
 
-import javax.persistence.*;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 @Setter
 @Entity
@@ -16,7 +21,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Flower extends Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "flower_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "flower_generator")
     private int id;
     private double sepalLength;
     private FlowerColor color;

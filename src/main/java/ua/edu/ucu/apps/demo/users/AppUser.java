@@ -18,7 +18,8 @@ import java.time.Period;
 @Table
 public class AppUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator = "user_generator")
     private int id;
     private String name;
     private String email;
