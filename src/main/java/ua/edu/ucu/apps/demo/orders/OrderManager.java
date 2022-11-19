@@ -1,11 +1,10 @@
 package ua.edu.ucu.apps.demo.orders;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ua.edu.ucu.apps.demo.flowers.Flower;
-import ua.edu.ucu.apps.demo.flowers.FlowerColor;
-import ua.edu.ucu.apps.demo.flowers.FlowerType;
+import ua.edu.ucu.apps.demo.users.AppUserService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,39 +12,38 @@ import java.util.List;
 @RequestMapping("/order")
 @RestController
 public class OrderManager {
-    private static final double PRICE = 12.90;
-    private static final int PRICESECOND = 123;
-    private static final int SEPAL = 12;
-    private static final int SEPALSECOND = 20;
-    private static final int BALANCE = 1000;
     private final List<Order> orders = new ArrayList<>();
-    private final boolean resultOfTransaction;
+    private final AppUserService userService;
 
-    public OrderManager() {
-        Flower flower = new Flower(1, SEPAL, FlowerColor.RED,
-                PRICE, FlowerType.TULIP);
-        Flower flowerSecond = new Flower(2, SEPALSECOND,
-                FlowerColor.BLUE, PRICESECOND, FlowerType.CHAMOMILE);
+    @Autowired
+    public OrderManager(AppUserService userService) {
+        this.userService = userService;
         Order order = new Order();
-        order.addItem(flower);
-        order.addItem(flowerSecond);
-        order.setDeliveryStrategy(new DHLDeliveryStrategy());
-        order.setPaymentStrategy(new PayPalPaymentStrategy());
-        User user = new User(BALANCE, "Ukraine");
-        this.resultOfTransaction = order.processOrder(user);
-        this.orders.add(order);
+        order.setDelivery(new DHLDeliveryStrategy());
+        order.setPayment(new PayPalPaymentStrategy());
+        order.addItem(1);
+        order.addUser(1);
+        orders.add(order);
     }
 
     @GetMapping
     public List<Order> getOrders() {
-        return this.orders;
+        return orders;
     }
 
-    @GetMapping("/results")
-    public String getResults() {
-        if (this.resultOfTransaction) {
-            return "Transaction was successful";
+    @GetMapping("process")
+    public String processOrder() {
+        for (Order order : orders) {
+            notify(order);
         }
-        return "Transaction wasn't successful";
+        return "Orders processed";
+
     }
+
+    public void notify(Order order) {
+        for (Integer userId : order.getUserIds()) {
+            userService.updateUser(userId);
+        }
+    }
+
 }

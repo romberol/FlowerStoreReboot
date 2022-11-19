@@ -5,8 +5,8 @@ POST http://localhost:8080/flowers
 Content-Type: application/json
 
 {
-  "sepalLength": 100,
-  "price": 200,
+  "sepalLength": 20,
+  "price": 100,
   "color": "BLUE",
   "flType": "ROSE"
 }
@@ -19,7 +19,7 @@ POST http://localhost:8080/user
 Content-Type: application/json
 
 {
-  "name":"Roma",
+  "name": "Roma",
   "email": "opa.gmail",
   "dob": "2003-09-05"
 }

@@ -1,4 +1,4 @@
-package ua.edu.ucu.apps.demo.flowers.flowerbucket;
+package ua.edu.ucu.apps.demo.flowers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import ua.edu.ucu.apps.demo.flowers.Flower;
-import ua.edu.ucu.apps.demo.flowers.FlowerService;
 
 import java.util.List;
 

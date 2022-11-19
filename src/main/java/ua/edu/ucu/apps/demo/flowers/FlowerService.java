@@ -2,7 +2,9 @@ package ua.edu.ucu.apps.demo.flowers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlowerService {
@@ -19,5 +21,9 @@ public class FlowerService {
 
     public void addFlower(Flower flower) {
         flowerRepository.save(flower);
+    }
+
+    public Optional<Flower> findById(int id) {
+        return flowerRepository.findById(id);
     }
 }
