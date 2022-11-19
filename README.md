@@ -16,6 +16,6 @@ Then proccess order:
 
 ![image](https://user-images.githubusercontent.com/93192972/202846596-4646581f-808f-4769-a926-d7f66e2d91fd.png)
 
-Now our user with id 1 has processed order:
+Now our user with ID 1 has processed order:
 
 ![image](https://user-images.githubusercontent.com/93192972/202846611-261302bd-96f6-439f-afd0-4c508c79681d.png)
